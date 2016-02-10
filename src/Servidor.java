@@ -53,74 +53,9 @@ public class Servidor {
             is.read(mensaje);
 
             msgEntrada = new String(mensaje);
-            System.out.println(new String (mensaje));
 
-
-            if (msgEntrada.contains("+")){
-
-                int posPrimera = msgEntrada.indexOf("+");
-                String operando1 = msgEntrada.substring(0,posPrimera);
-                String operando2 = msgEntrada.substring(posPrimera+1,msgEntrada.length());
-
-                double op1 = Double.parseDouble(operando1);
-                double op2 = Double.parseDouble(operando2);
-                double total = op1+op2;
-
-                String msgTotal = op1+" + "+op2+" = "+total;
-
-                System.out.println(msgTotal);
-                //OutputStream os1 = socketDeEscucha.getOutputStream();
-                //os1.write(msgTotal.getBytes());
-                os.write(msgTotal.getBytes());
-
-            }else if (msgEntrada.contains("-")) {
-                int posPrimera = msgEntrada.indexOf("-");
-                String operando1 = msgEntrada.substring(0, posPrimera);
-                String operando2 = msgEntrada.substring(posPrimera + 1, msgEntrada.length());
-
-                double op1 = Double.parseDouble(operando1);
-                double op2 = Double.parseDouble(operando2);
-                double total = op1 - op2;
-
-                msgSalida = op1 + " - " + op2 + " = " + total;
-                System.out.println(msgSalida);
-
-                os.write(msgSalida.getBytes());
-
-
-            }else if (msgEntrada.contains("*")) {
-                int posPrimera = msgEntrada.indexOf("*");
-                String operando1 = msgEntrada.substring(0, posPrimera);
-                String operando2 = msgEntrada.substring(posPrimera + 1, msgEntrada.length());
-
-                double op1 = Double.parseDouble(operando1);
-                double op2 = Double.parseDouble(operando2);
-                double total = op1 * op2;
-
-                msgSalida = op1 + " * " + op2 + " = " + total;
-                System.out.println(msgSalida);
-
-                os.write(msgSalida.getBytes());
-
-            }else if (msgEntrada.contains("/")) {
-
-                int posPrimera = msgEntrada.indexOf("/");
-                String operando1 = msgEntrada.substring(0, posPrimera);
-                String operando2 = msgEntrada.substring(posPrimera + 1, msgEntrada.length());
-
-                double op1 = Double.parseDouble(operando1);
-                double op2 = Double.parseDouble(operando2);
-                double total = op1 / op2;
-
-                msgSalida = op1 + " / " + op2 + " = " + total;
-                System.out.println(msgSalida);
-
-                os.write(msgSalida.getBytes());
-
-            }else{
-                msgSalida = "QUE COÑO DICES?";
-                os.write(msgSalida.getBytes());
-            }
+            os.write(Operacion.calcular(msgEntrada).getBytes());
+            System.out.println(msgEntrada);
 
             System.out.println(",,,cerrando");
 
