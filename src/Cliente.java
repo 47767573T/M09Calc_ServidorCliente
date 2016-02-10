@@ -8,7 +8,7 @@ import java.util.Scanner;
 /**
  * Created by 46066294p on 03/02/16.
  */
-public class ClienteCalc {
+public class Cliente {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
